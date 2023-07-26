@@ -1,5 +1,5 @@
 # rdkafka-cli
-a little tool to interact with kafka
+(WIP) A little tool to interact with kafka
 
 ## Installation
 ```sh
