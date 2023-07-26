@@ -7,9 +7,8 @@ use tracing_subscriber::{layer::SubscriberExt, EnvFilter, Registry};
 // spell out the actual type of the returned subscriber, which is
 // indeed quite compiles.
 
-pub fn get_debug_subscriber(env_filter: &str) -> impl Subscriber + Sync + Send {
-    let env_filter =
-        EnvFilter::try_from_default_env().unwrap_or_else(|_| EnvFilter::new(env_filter));
+pub fn get_debug_subscriber() -> impl Subscriber + Sync + Send {
+    let env_filter = EnvFilter::try_from_default_env().unwrap_or_else(|_| EnvFilter::new("debug"));
 
     let formatting_layer = tracing_subscriber::fmt::layer()
         .with_target(true)
@@ -23,9 +22,8 @@ pub fn get_debug_subscriber(env_filter: &str) -> impl Subscriber + Sync + Send {
     Registry::default().with(env_filter).with(formatting_layer)
 }
 
-pub fn get_plain_subscriber(env_filter: &str) -> impl Subscriber + Sync + Send {
-    let env_filter =
-        EnvFilter::try_from_default_env().unwrap_or_else(|_| EnvFilter::new(env_filter));
+pub fn get_plain_subscriber() -> impl Subscriber + Sync + Send {
+    let env_filter = EnvFilter::try_from_default_env().unwrap_or_else(|_| EnvFilter::new("info"));
 
     let formatting_layer = tracing_subscriber::fmt::layer()
         .with_target(true)

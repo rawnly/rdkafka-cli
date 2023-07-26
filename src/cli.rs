@@ -117,6 +117,9 @@ pub struct ProduceFlags {
     #[clap(long)]
     pub file: String,
 
+    #[clap(long, default_value = "1")]
+    pub iterations: usize,
+
     #[clap(long)]
     pub topic: String,
 
